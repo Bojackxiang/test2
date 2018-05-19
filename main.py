@@ -254,7 +254,7 @@ cum_file = open(path, 'w')
 delay_file = open(path, 'w')
 i = 0
 while i<100:
-    delay, cumulative_res_time = submission("trace", './assets/arrival_1.txt','./assets/service_1.txt', 5, 5, i, 100)
+    delay, cumulative_res_time = submission("random", './assets/arrival_1.txt','./assets/service_1.txt', 5, 5, i, 100)
     cum_file.write(str(cumulative_res_time)+'/n')
     delay_file.write(str(delay)+'/n')
     i += 1
