@@ -28,25 +28,26 @@ def submission(mode, arrival, service, m, setup_time, delayedoff_time, time_end)
         mode = "trace"
     
     if mode == "trace":
-        origianl_mode = "trace"       
 
-        path_arrival = arrival
-        path_service = service
-        
-        with open(path_arrival) as file_1:
-            arrival_content = file_1.readlines()
-        
-        with open(path_service) as file_2:
-            service_content = file_2.readlines() 
-        
-        arrival = []
-        service = []
+        if origianl_mode != "random":           
+            path_arrival = arrival
+            path_service = service
+            
+            with open(path_arrival) as file_1:
+                arrival_content = file_1.readlines()
+            
+            with open(path_service) as file_2:
+                service_content = file_2.readlines() 
+            
+            arrival = []
+            service = []
 
-        for each_number in arrival_content:
-            arrival.append(int(each_number.strip()))
+            for each_number in arrival_content:
+                arrival.append(int(each_number.strip()))
+            
+            for each_number_2 in service_content:
+                service.append(int(each_number_2.strip()))
         
-        for each_number_2 in service_content:
-            service.append(int(each_number_2.strip()))
         
         # print(arrival)
         # print(service)
@@ -244,17 +245,12 @@ def submission(mode, arrival, service, m, setup_time, delayedoff_time, time_end)
         # print("num count",leave_count)
         return delayedoff_time, cumulative_res_time
 
-        
-        
-delay, cumulative = submission("trace", './assets/arrival_1.txt','./assets/service_1.txt', 5, 10, 5, 70)
 
-path = './cumulative.txt'
-path = './delayoff.txt'
-cum_file = open(path, 'w')
-delay_file = open(path, 'w')
+cum_file = open('./cumulative.txt','w')
+delay_file = open('./delayoff.txt','w')
 i = 0
 while i<100:
-    delay, cumulative_res_time = submission("random", './assets/arrival_1.txt','./assets/service_1.txt', 5, 5, i, 100)
+    delay, cumulative_res_time = submission("random", 3,10, 5, 5, i, 100)
     cum_file.write(str(cumulative_res_time)+'/n')
     delay_file.write(str(delay)+'/n')
     i += 1
