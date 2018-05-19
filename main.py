@@ -1,6 +1,7 @@
 import random
 import queue
 import math
+import os
 
 def submission(mode, arrival, service, m, setup_time, delayedoff_time, time_end):
     
@@ -246,8 +247,10 @@ def submission(mode, arrival, service, m, setup_time, delayedoff_time, time_end)
         return delayedoff_time, cumulative_res_time
 
 
-cum_file = open('./cumulative.txt','w')
-delay_file = open('./delayoff.txt','w')
+
+
+cum_file = open('./cumulative_my.txt','w')
+delay_file = open('./delayoff_my.txt','w')
 i = 0
 while i<100:
     delay, cumulative_res_time = submission("random", 3,10, 5, 5, i, 100)
